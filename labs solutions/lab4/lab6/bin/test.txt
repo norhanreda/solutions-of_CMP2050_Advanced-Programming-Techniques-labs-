@@ -1,0 +1,8 @@
+ isbn title    author  borrowed borrower  
+ 1    hello     ahmed  true     ahmed
+ 2    micro    kawthar true     kamel
+ 3    computer khadega false    
+ 4    APT      samy    false    
+ 5    science  toqa    true    ali
+ 6    maths   fawzy    false 
+ 

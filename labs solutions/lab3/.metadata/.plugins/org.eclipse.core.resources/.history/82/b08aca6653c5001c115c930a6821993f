@@ -1,0 +1,144 @@
+package matrixtest;
+import mpi.*;
+import java.io.File;
+import java.util.Scanner;
+
+public class matrix
+ {
+
+	
+	public static void main(String[] args) 
+     {
+		
+		// TODO Auto-generated method stub
+		int arr_size;
+		
+		
+		 MPI.Init(args);
+         int rank = MPI.COMM_WORLD.Rank();
+        int size = MPI.COMM_WORLD.Size();
+	   if(rank==0)
+         {
+          int global_sum=0, local_sum = 0 ;
+            int [] arr=readFiles("D:\\Astudy\\second year\\second term\\APT\\labs solutions\\lab4\\matrixtest\\src\\matrixtest\\test.txt");
+            arr_size=arr.length;
+              
+             
+              
+            int s=arr.length/size;
+            //Calculating the local sum of rank 0 itself
+			for(int j=0; j<s; j++)
+			{
+				local_sum += arr[j];
+            }
+			System.out.print("i'm the root process my rank is: "+ rank +" my sum is: "+local_sum+" \t \n");
+			global_sum += local_sum;
+			
+			
+			int elements_per_process=arr_size/size;
+			for(int i=1;i<size;i++)
+			{
+				int arr_bound[]=new int[3];
+				arr_bound[0]=i*elements_per_process;
+				arr_bound[2]=arr_size;
+				if(i !=size-1 )
+				{
+				arr_bound[1]=arr_bound[0]+elements_per_process-1;
+				
+				}
+				else
+				{
+					arr_bound[1]=arr_size-1;
+					
+				}
+				
+				
+				 MPI.COMM_WORLD.Send(arr_bound,0,3,MPI.INT,i,99);
+				MPI.COMM_WORLD.Send(arr,0,arr_size,MPI.INT,i,99);
+				
+//				int recv_local_sum[]=new int[1];
+//			MPI.COMM_WORLD.Recv(recv_local_sum,0,1,MPI.INT,i,99);
+//		global_sum+=recv_local_sum[0];
+		
+				
+			}
+			for(int i=1; i<size; i++){
+
+		   int recv_local_sum[]=new int[1];
+			MPI.COMM_WORLD.Recv(recv_local_sum,0,1,MPI.INT,i,98);
+			global_sum+=recv_local_sum[0];
+			}
+		System.out.print("i'm the root process my rank is: "+ rank +" total sum is: "+global_sum+" \t \n");
+			
+
+
+
+         }
+	   
+	   else
+	   {
+		  int local_sum = 0;
+		  int arr_recv[]=new int[1000];
+		  int arr_bound[]=new int[3];
+		 
+		  MPI.COMM_WORLD.Recv(arr_bound,0,3,MPI.INT,0,99);
+		  int first=arr_bound[0];
+		  int last=arr_bound[1];
+		  int arr_count=arr_bound[2];
+		  MPI.COMM_WORLD.Recv(arr_recv,0,arr_count,MPI.INT,0,99);
+		 //System.out.print(arr_bound[0]+" "+rank+" "+arr_bound[1]+" \n");
+		  
+		 for(int j=first;j<=last;j++)
+		 {
+			  local_sum+=arr_recv[j];
+			// System.out.print(arr_recv[j]+" "+rank+" "+first+" "+last+" "+ local_sum+" ");
+		// System.out.print("\n");
+			  
+			 
+			  
+			  
+		 }
+		 int locsum[]=new int[1];
+		  locsum[0]=local_sum;
+   	  MPI.COMM_WORLD.Send(locsum,0,1,MPI.INT,0,98);
+		
+		 System.out.print("i'm a child process my rank is: "+ rank +" my sum is: "+local_sum+" \t \n");
+		   
+		   
+	   }
+
+
+ 
+
+        MPI.Finalize();
+	}
+        public static int[] readFiles(String file) 
+        {
+        	
+        	try {
+        	File f=new File(file);
+        	Scanner s=new Scanner(f);
+        	int ctr=0;
+        	while (s.hasNextInt())
+        	
+        	{
+        		ctr++;
+        		s.nextInt();
+        	}
+        	
+        	int [] arr=new int [ctr];
+        	Scanner s1=new Scanner(f);
+        	
+        	for(int i=0;i<arr.length;i++ )
+        		arr[i]=s1.nextInt();
+        	return arr;
+        	}
+        	catch(Exception e)
+        	{
+        		return null ;
+        	}
+        	
+        }
+   
+}
+	

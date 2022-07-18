@@ -1,0 +1,23 @@
+INDEX VERSION 1.131+D:\Astudy\second year\second term\APT\labs solutions\lab4\.metadata\.plugins\org.eclipse.jdt.core
+189309681.index
+640855786.index
+320317017.index
+4172343708.index
+1598233841.index
+2691411539.index
+1814736505.index
+250420536.index
+1865797976.index
+984477388.index
+4257448709.index
+2303031504.index
+4131995347.index
+1273786744.index
+3209151359.index
+3422760052.index
+2141050922.index
+1497860215.index
+3089826544.index
+2193621599.index
+2687087202.index
+1721329871.index

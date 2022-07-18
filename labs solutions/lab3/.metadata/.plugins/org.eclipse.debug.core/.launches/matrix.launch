@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
+    <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+        <listEntry value="/matrixtest/src/matrixtest/matrix.java"/>
+    </listAttribute>
+    <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+        <listEntry value="1"/>
+    </listAttribute>
+    <mapAttribute key="org.eclipse.debug.core.environmentVariables">
+        <mapEntry key="MPJ_HOME" value="${MPJ_HOME}"/>
+    </mapAttribute>
+    <booleanAttribute key="org.eclipse.jdt.launching.ATTR_EXCLUDE_TEST_CODE" value="true"/>
+    <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="matrixtest.matrix"/>
+    <stringAttribute key="org.eclipse.jdt.launching.MODULE_NAME" value="matrixtest"/>
+    <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="matrixtest"/>
+    <stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-jar ${MPJ_HOME}/lib/starter.jar -np 4"/>
+</launchConfiguration>

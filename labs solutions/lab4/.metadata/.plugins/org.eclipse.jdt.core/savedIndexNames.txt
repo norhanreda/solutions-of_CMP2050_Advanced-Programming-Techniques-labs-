@@ -1,0 +1,4 @@
+INDEX VERSION 1.131+D:\Astudy\second year\second term\APT\labs solutions\lab6\.metadata\.plugins\org.eclipse.jdt.core
+1865797976.index
+1888449597.index
+2606080199.index
